@@ -21,12 +21,15 @@ const firefoxManifest = (s: Scheme, z: ZedTheme) => {
       '(vimeo.com/379631605), CC BY 3.0.',
     author: AUTHOR,
     browser_specific_settings: {
+      // data_collection_permissions (required for new add-ons on
+      // addons.mozilla.org; a theme collects nothing) exists since Firefox 140
+      // and Firefox for Android 142.
       gecko: {
         id: `${SLUG}-space@tofulupo`,
-        strict_min_version: '106.0',
-        // Required for new add-ons on addons.mozilla.org; a theme collects nothing.
+        strict_min_version: '140.0',
         data_collection_permissions: { required: ['none'] }
-      }
+      },
+      gecko_android: { strict_min_version: '142.0' }
     },
     theme: {
       images: { additional_backgrounds: ['img/background.gif'] },
