@@ -29,7 +29,7 @@
     },
     "firefox-background": "deno run --allow-read --allow-write=firefox --allow-run=ffmpeg src/firefox-background.ts",
     "firefox-chrome": "sh firefox/install.sh",
-    "firefox-export": "cd firefox && rm -rf .export ayu-vivid-dark-space.zip && mkdir -p .export/ayu-vivid-dark-space/chrome .export/ayu-vivid-dark-space/img && cp install.sh CREDITS.md .export/ayu-vivid-dark-space/ && cp chrome/userChrome.css chrome/userContent.css .export/ayu-vivid-dark-space/chrome/ && cp img/background.gif .export/ayu-vivid-dark-space/img/ && cd .export && zip -qr ../ayu-vivid-dark-space.zip ayu-vivid-dark-space && cd .. && rm -rf .export",
-    "firefox-pack": "cd firefox && rm -f ayu-vivid-dark-space.xpi && zip -qr ayu-vivid-dark-space.xpi manifest.json img CREDITS.md"
+    "firefox-export": "cd firefox && rm -rf .export ayu-vivid-space.zip && mkdir -p .export/ayu-vivid-space/chrome .export/ayu-vivid-space/img && cp install.sh CREDITS.md .export/ayu-vivid-space/ && cp chrome/userChrome.css chrome/userContent.css .export/ayu-vivid-space/chrome/ && cp img/background.gif .export/ayu-vivid-space/img/ && cd .export && zip -qr ../ayu-vivid-space.zip ayu-vivid-space && cd .. && rm -rf .export",
+    "firefox-pack": "cd firefox && rm -f ayu-vivid-space.xpi && zip -qr ayu-vivid-space.xpi manifest.json img CREDITS.md"
   }
 }

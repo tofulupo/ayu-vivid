@@ -1,5 +1,5 @@
 #!/bin/sh
-# Installs ayu Vivid Dark Space (userChrome.css, userContent.css and the animated
+# Installs ayu Vivid Space (userChrome.css, userContent.css and the animated
 # background) into a Firefox or LibreWolf profile's chrome/ folder.
 #
 #   sh install.sh                 # LibreWolf's default profile (macOS, Linux, Flatpak)

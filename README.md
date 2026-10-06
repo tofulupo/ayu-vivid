@@ -109,8 +109,8 @@ deno task firefox-background
 
 After `deno task build`, run `deno task firefox-chrome` again and restart.
 
-**On another computer:** `deno task firefox-export` creates `firefox/ayu-vivid-dark-space.zip` with the CSS, the GIF,
-`CREDITS.md` and `install.sh`. Copy it over, unzip, run `sh ayu-vivid-dark-space/install.sh` (or pass a profile
+**On another computer:** `deno task firefox-export` creates `firefox/ayu-vivid-space.zip` with the CSS, the GIF,
+`CREDITS.md` and `install.sh`. Copy it over, unzip, run `sh ayu-vivid-space/install.sh` (or pass a profile
 directory), then do steps 2-4. Only needs `sh`. If you share the zip, keep `CREDITS.md` in it; the animation's license
 requires the attribution.
 

@@ -1,13 +1,18 @@
 {
   "manifest_version": 2,
-  "name": "ayu Vivid Dark Space",
+  "name": "ayu Vivid Space",
   "version": "1.0.0",
   "description": "ayu Vivid Dark colors over animated stars. Based on ayu by Ike Ku. Animation: \"Animation Of Stars\" by Play (vimeo.com/379631605), CC BY 3.0.",
   "author": "Marcel (tofulupo)",
   "browser_specific_settings": {
     "gecko": {
-      "id": "ayu-vivid-dark-space@tofulupo",
-      "strict_min_version": "106.0"
+      "id": "ayu-vivid-space@tofulupo",
+      "strict_min_version": "106.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   },
   "theme": {
@@ -20,8 +25,7 @@
       "additional_backgrounds_tiling": [
         "repeat-x"
       ],
-      "color_scheme": "dark",
-      "content_color_scheme": "dark"
+      "color_scheme": "dark"
     },
     "colors": {
       "frame": "#0d1017",

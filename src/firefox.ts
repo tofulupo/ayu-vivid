@@ -1,6 +1,6 @@
 // Firefox / LibreWolf theme in firefox/: add-on manifest plus userChrome.css.
 import * as ayu from 'ayu'
-import { AUTHOR, type Scheme, SLUG, solid, VERSION, writeJson, writeText } from './shared.ts'
+import { AUTHOR, NAME, type Scheme, SLUG, solid, VERSION, writeJson, writeText } from './shared.ts'
 import { theme, type ZedTheme } from './zed.ts'
 
 // Static theme over the animated stars background (see
@@ -14,21 +14,26 @@ const firefoxManifest = (s: Scheme, z: ZedTheme) => {
   const toolbar = s.editor.bg.alpha(0.8).hex()
   return {
     manifest_version: 2,
-    name: `${z.name} Space`,
+    name: `${NAME} Space`,
     version: VERSION,
     description:
       `${z.name} colors over animated stars. Based on ayu by Ike Ku. Animation: "Animation Of Stars" by Play ` +
       '(vimeo.com/379631605), CC BY 3.0.',
     author: AUTHOR,
     browser_specific_settings: {
-      gecko: { id: `${SLUG}-dark-space@tofulupo`, strict_min_version: '106.0' }
+      gecko: {
+        id: `${SLUG}-space@tofulupo`,
+        strict_min_version: '106.0',
+        // Required for new add-ons on addons.mozilla.org; a theme collects nothing.
+        data_collection_permissions: { required: ['none'] }
+      }
     },
     theme: {
       images: { additional_backgrounds: ['img/background.gif'] },
       properties: {
         additional_backgrounds_tiling: ['repeat-x'],
-        color_scheme: 'dark',
-        content_color_scheme: 'dark'
+        // Dark browser menus; websites keep following the user's own setting.
+        color_scheme: 'dark'
       },
       colors: {
         frame: st['background'],
