@@ -1,0 +1,29 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/encoding@1": "1.0.11",
+    "npm:ayu@^9.1.0": "9.1.0"
+  },
+  "jsr": {
+    "@std/encoding@1.0.11": {
+      "integrity": "e7cef2f0b3153bccc17431e7c864a1de03a4b6d9647389c43e08aaa775d37385"
+    }
+  },
+  "npm": {
+    "ayu@9.1.0": {
+      "integrity": "sha512-F0UfqmljWvueIYkKrf6EwJX+qHcEPn3c5tLcnJoAXO2tcjkMaSIbSep0BEcVNfw2pxMTZFHnsRf8ltaaieikQg==",
+      "dependencies": [
+        "culori"
+      ]
+    },
+    "culori@4.0.2": {
+      "integrity": "sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/encoding@1",
+      "npm:ayu@^9.1.0"
+    ]
+  }
+}

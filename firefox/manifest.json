@@ -1,0 +1,66 @@
+{
+  "manifest_version": 2,
+  "name": "ayu Vivid Dark Space",
+  "version": "1.0.0",
+  "description": "ayu Vivid Dark colors over animated stars. Based on ayu by Ike Ku. Animation: \"Animation Of Stars\" by Play (vimeo.com/379631605), CC BY 3.0.",
+  "author": "Marcel (tofulupo)",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ayu-vivid-dark-space@tofulupo",
+      "strict_min_version": "106.0"
+    }
+  },
+  "theme": {
+    "images": {
+      "additional_backgrounds": [
+        "img/background.gif"
+      ]
+    },
+    "properties": {
+      "additional_backgrounds_tiling": [
+        "repeat-x"
+      ],
+      "color_scheme": "dark",
+      "content_color_scheme": "dark"
+    },
+    "colors": {
+      "frame": "#0d1017",
+      "frame_inactive": "#0d1017",
+      "button_background_hover": "#47526633",
+      "button_background_active": "#47526640",
+      "bookmark_text": "#bfbdb6",
+      "icons": "#bfbdb6",
+      "icons_attention": "#e6b450",
+      "ntp_background": "#10141c",
+      "ntp_text": "#bfbdb6",
+      "popup": "#0f131a",
+      "popup_border": "#1b1f29",
+      "popup_highlight": "#1d232d",
+      "popup_highlight_text": "#bfbdb6",
+      "popup_text": "#bfbdb6",
+      "sidebar": "#0d1017",
+      "sidebar_border": "#1b1f29",
+      "sidebar_highlight": "#1c212b",
+      "sidebar_highlight_text": "#bfbdb6",
+      "sidebar_text": "#bfbdb6",
+      "tab_background_separator": "transparent",
+      "tab_background_text": "#bfbdb699",
+      "tab_loading": "#e6b450",
+      "tab_selected": "#10141ccc",
+      "tab_text": "#bfbdb6",
+      "tab_line": "#e6b450",
+      "toolbar": "#10141ccc",
+      "toolbar_bottom_separator": "#1b1f29",
+      "toolbar_field": "#0d1017",
+      "toolbar_field_focus": "#141821",
+      "toolbar_field_border": "transparent",
+      "toolbar_field_border_focus": "#e6b45080",
+      "toolbar_field_highlight": "#3388ff40",
+      "toolbar_field_highlight_text": "#bfbdb6",
+      "toolbar_field_text": "#bfbdb6",
+      "toolbar_field_text_focus": "#bfbdb6",
+      "toolbar_top_separator": "transparent",
+      "toolbar_vertical_separator": "#1b1f29"
+    }
+  }
+}

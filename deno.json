@@ -1,0 +1,35 @@
+{
+  "imports": {
+    "@std/encoding": "jsr:@std/encoding@^1",
+    "ayu": "npm:ayu@^9.1.0",
+    "ayu/color": "npm:ayu@^9.1.0/color",
+    "ayu/icons": "npm:ayu@^9.1.0/icons"
+  },
+  "tasks": {
+    "build": {
+      "description": "Lint Markdown, then generate all ports",
+      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox src/build.ts",
+      "dependencies": ["md"]
+    },
+    "md": {
+      "description": "Lint Markdown with rumdl",
+      "command": "rumdl check ."
+    },
+    "md-fix": {
+      "description": "Fix Markdown issues with rumdl (wraps long lines)",
+      "command": "rumdl fmt ."
+    },
+    "icons-fetch": {
+      "description": "Download SVG replacements for ayu's PNG-only icons into src/icons (keeps existing files)",
+      "command": "deno run --allow-net=api.github.com,raw.githubusercontent.com --allow-read --allow-write=src/icons --allow-run=magick src/fetch-icons.ts"
+    },
+    "icons-compare": {
+      "description": "Open a page comparing the upstream ayu (Sublime) icons with the Zed icons",
+      "command": "deno run --allow-read --allow-write=.compare src/compare-icons.ts && open .compare/icons.html"
+    },
+    "firefox-background": "deno run --allow-read --allow-write=firefox --allow-run=ffmpeg src/firefox-background.ts",
+    "firefox-chrome": "sh firefox/install.sh",
+    "firefox-export": "cd firefox && rm -rf .export ayu-vivid-dark-space.zip && mkdir -p .export/ayu-vivid-dark-space/chrome .export/ayu-vivid-dark-space/img && cp install.sh CREDITS.md .export/ayu-vivid-dark-space/ && cp chrome/userChrome.css chrome/userContent.css .export/ayu-vivid-dark-space/chrome/ && cp img/background.gif .export/ayu-vivid-dark-space/img/ && cd .export && zip -qr ../ayu-vivid-dark-space.zip ayu-vivid-dark-space && cd .. && rm -rf .export",
+    "firefox-pack": "cd firefox && rm -f ayu-vivid-dark-space.xpi && zip -qr ayu-vivid-dark-space.xpi manifest.json img CREDITS.md"
+  }
+}

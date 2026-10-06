@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+.compare/
+.rumdl_cache/
+
+# Firefox build artifacts (deno task firefox-pack / firefox-export)
+firefox/*.xpi
+firefox/*.zip
+firefox/.export/
