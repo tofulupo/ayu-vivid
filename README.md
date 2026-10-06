@@ -87,21 +87,27 @@ Copy `vim/ayu-vivid-dark.vim` to `~/.vim/colors/` (Vim) or `~/.config/nvim/color
 
 ## Firefox / LibreWolf
 
-ayu Vivid Dark colors over animated stars. The animation is made from
-[Animation Of Stars](https://vimeo.com/379631605) by Play (CC BY 3.0), see [`firefox/CREDITS.md`](firefox/CREDITS.md).
-The source video is in `firefox/source/` and the finished `firefox/img/background.gif` is committed. To remake it, e.g.
-after changing the background color (needs ffmpeg):
+**ayu Vivid Space**: ayu Vivid Dark colors over animated stars, for Firefox 140+ and LibreWolf.
 
-```sh
-deno task firefox-background
-```
+> **Recommended: install from addons.mozilla.org.** The theme is currently **in review** there. Once it's approved,
+> that's a one-click install with automatic updates, and the link will be added here. Until then, the commands below
+> let you use it right away.
 
-**Permanent install, without an add-on (recommended):** the theme is generated as `firefox/chrome/userChrome.css` +
-`userContent.css`, so add-on signature checking can stay on.
+### Use it now (userChrome.css)
 
-1. `deno task firefox-chrome` copies the files and the GIF into LibreWolf's default profile (`chrome/` folder). For
-   another profile or Firefox, pass the profile directory: `deno task firefox-chrome "<profile dir>"`. It won't
-   overwrite a `userChrome.css` it didn't create.
+This installs the theme as CSS in your browser profile; no add-on and no unsigned extensions are needed.
+
+1. Install the files into your profile, either from this repository or from the `ayu-vivid-space.zip` of a
+   [release](https://github.com/tofulupo/ayu-vivid/releases) (only needs `sh`):
+
+   ```sh
+   deno task firefox-chrome                  # from this repository
+   sh ayu-vivid-space/install.sh             # from the unzipped release
+   ```
+
+   Without arguments it uses LibreWolf's default profile (macOS, Linux, Flatpak). For Firefox or another profile, add
+   the folder from `about:support` → Profile Folder, e.g. `deno task firefox-chrome "<profile dir>"`. It never
+   overwrites a `userChrome.css` or `userContent.css` it didn't create.
 2. In `about:config`, set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`. This only lets the browser
    load CSS from your own profile folder.
 3. In `about:addons` → Themes, enable the built-in **Dark** theme. The CSS overrides its colors.
@@ -109,13 +115,31 @@ deno task firefox-background
 
 After `deno task build`, run `deno task firefox-chrome` again and restart.
 
-**On another computer:** `deno task firefox-export` creates `firefox/ayu-vivid-space.zip` with the CSS, the GIF,
-`CREDITS.md` and `install.sh`. Copy it over, unzip, run `sh ayu-vivid-space/install.sh` (or pass a profile
-directory), then do steps 2-4. Only needs `sh`. If you share the zip, keep `CREDITS.md` in it; the animation's license
-requires the attribution.
+### Uninstall
 
-**As an add-on:** `about:debugging` → This Firefox → **Load Temporary Add-on** → `firefox/manifest.json` works until
-restart. A permanent install needs the add-on signed by Mozilla (`deno task firefox-pack` builds the `.xpi`).
+```sh
+deno task firefox-chrome-uninstall        # from this repository
+sh ayu-vivid-space/install.sh --uninstall # from the unzipped release
+```
+
+Pass a profile folder the same way as when installing. It only removes the files it installed; your own
+`userChrome.css`/`userContent.css` and anything else in `chrome/` stay. Then restart the browser. Optionally set the
+`about:config` setting from step 2 back to `false` and pick another theme in `about:addons`.
+
+When the theme is available on addons.mozilla.org, uninstall the CSS version first; otherwise it overrides the add-on's
+colors.
+
+### Development
+
+- **Animation:** made from [Animation Of Stars](https://vimeo.com/379631605) by Play (CC BY 3.0), see
+  [`firefox/CREDITS.md`](firefox/CREDITS.md). The source video is in `firefox/source/`, the finished
+  `firefox/img/background.gif` is committed. To remake it, e.g. after changing the background color (needs ffmpeg):
+  `deno task firefox-background`.
+- **Release zip:** `deno task firefox-export` creates `firefox/ayu-vivid-space.zip` with the CSS, the GIF, `CREDITS.md`
+  and `install.sh`. Keep `CREDITS.md` in it when sharing; the animation's license requires the attribution.
+- **Add-on package:** `deno task firefox-pack` builds `firefox/ayu-vivid-space.xpi` for addons.mozilla.org. To test it
+  unsigned until the next restart: `about:debugging` → This Firefox → **Load Temporary Add-on** →
+  `firefox/manifest.json`.
 
 ## License
 
