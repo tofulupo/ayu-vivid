@@ -1,4 +1,5 @@
-// Zed extension: color themes and icon theme in zed/.
+// Zed extensions in zed/: the color themes (zed/theme) and the icon theme
+// (zed/icons) are separate extensions, as Zed's registry requires.
 import * as ayu from 'ayu'
 import { getIconFile, icons } from 'ayu/icons'
 import { encodeBase64 } from '@std/encoding/base64'
@@ -308,7 +309,7 @@ const toSvg = (file: string) => {
 const writeIcon = (name: string, file: string, written: Map<string, string>) => {
   const target = `icons/${name}.svg`
   if (!written.has(file)) {
-    Deno.writeTextFileSync(out(`zed/${target}`), toSvg(file))
+    Deno.writeTextFileSync(out(`${ICONS_DIR}/${target}`), toSvg(file))
     written.set(file, target)
   }
   return `./${written.get(file)}`
@@ -370,27 +371,47 @@ const convertColors = (value: unknown): unknown => {
 
 export type ZedTheme = ReturnType<typeof theme>
 
-export const build = () => {
-  const colorSpace = Deno.args.includes('--p3') ? convertColors : (v: unknown) => v
-  for (const dir of ['zed/themes', 'zed/icon_themes', 'zed/icons']) cleanDir(dir)
-  // Ship the licenses with the extension (the MIT icons require their notice).
-  writeText('zed/LICENSE', Deno.readTextFileSync(out('LICENSE')))
-  writeText('zed/THIRD-PARTY-NOTICES.md', Deno.readTextFileSync(out('src/icons/NOTICES.md')))
+const THEME_DIR = 'zed/theme'
+export const ICONS_DIR = 'zed/icons'
 
-  const variants: Variant[] = ['dark', 'mirage', 'light']
+// Each extension folder is published on its own, so each gets the manifest,
+// the license (checked by Zed's CI) and the third-party notices.
+const writeExtension = (dir: string, id: string, name: string, description: string) => {
   writeText(
-    'zed/extension.toml',
-    `id = "${SLUG}"
-name = "${NAME}"
+    `${dir}/extension.toml`,
+    `id = "${id}"
+name = "${name}"
 version = "${VERSION}"
 schema_version = 1
 authors = ["${AUTHOR}"]
-description = "ayu Dark, Mirage and Light with punchier syntax colors, plus ayu file icons. Based on ayu by Ike Ku."
+description = "${description}"
 repository = "${REPOSITORY}"
 `
   )
+  writeText(`${dir}/LICENSE`, Deno.readTextFileSync(out('LICENSE')))
+  writeText(`${dir}/THIRD-PARTY-NOTICES.md`, Deno.readTextFileSync(out('THIRD-PARTY-NOTICES.md')))
+}
 
-  writeJson(`zed/themes/${SLUG}.json`, {
+export const build = () => {
+  const colorSpace = Deno.args.includes('--p3') ? convertColors : (v: unknown) => v
+  cleanDir('zed')
+  cleanDir(`${ICONS_DIR}/icons`)
+
+  writeExtension(
+    THEME_DIR,
+    `${SLUG}-theme`,
+    NAME,
+    'ayu Dark, Mirage and Light with punchier syntax colors. Based on ayu by Ike Ku.'
+  )
+  writeExtension(
+    ICONS_DIR,
+    `${SLUG}-icons`,
+    `${NAME} Icons`,
+    "ayu's file icons, with sharp SVGs for the ones ayu only has as PNG. Based on ayu by Ike Ku."
+  )
+
+  const variants: Variant[] = ['dark', 'mirage', 'light']
+  writeJson(`${THEME_DIR}/themes/${SLUG}.json`, {
     $schema: 'https://zed.dev/schema/themes/v0.2.0.json',
     name: NAME,
     author: AUTHOR,
@@ -398,7 +419,7 @@ repository = "${REPOSITORY}"
   })
 
   const written = new Map<string, string>()
-  writeJson(`zed/icon_themes/${SLUG}.json`, {
+  writeJson(`${ICONS_DIR}/icon_themes/${SLUG}.json`, {
     $schema: 'https://zed.dev/schema/icon_themes/v0.3.0.json',
     name: `${NAME} Icons`,
     author: AUTHOR,

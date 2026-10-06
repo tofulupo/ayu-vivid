@@ -9,7 +9,8 @@ so they stay in sync. Syntax colors are tuned in the Zed theme, and the other po
 
 ```text
 src/        generators, one module per port (shared.ts has the color helpers)
-zed/        Zed extension: ayu Vivid Dark / Mirage / Light + ayu Vivid Icons
+zed/theme/  Zed extension "ayu Vivid": Dark / Mirage / Light color themes
+zed/icons/  Zed extension "ayu Vivid Icons": file icon theme
 cosmic/     COSMIC desktop theme + COSMIC Terminal colors (ayu Vivid Dark)
 vim/        Vim / Neovim colorscheme (ayu Vivid Dark)
 firefox/    Firefox / LibreWolf theme (ayu Vivid Dark + animated stars)
@@ -45,8 +46,10 @@ Create `src/<port>.ts` with a `build()` function that writes into `<port>/` (use
 
 ## Zed
 
+The color themes and the icons are two separate extensions, as Zed's registry requires. Install either or both:
+
 1. In Zed, open the command palette and run `zed: install dev extension`.
-2. Select the `zed/` folder.
+2. Select `zed/theme/` (color themes) or `zed/icons/` (icons). Repeat for the other one.
 3. Pick the theme with `theme selector: toggle` and the icons with `icon theme selector: toggle`.
 
 After rebuilding, run `zed: rebuild dev extension` (or reinstall it) to pick up changes.
@@ -114,15 +117,21 @@ requires the attribution.
 **As an add-on:** `about:debugging` → This Firefox → **Load Temporary Add-on** → `firefox/manifest.json` works until
 restart. A permanent install needs the add-on signed by Mozilla (`deno task firefox-pack` builds the `.xpi`).
 
+## License
+
+BSD-3-Clause, see [`LICENSE`](LICENSE). Third-party parts keep their own licenses, listed in
+[`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) and [`firefox/CREDITS.md`](firefox/CREDITS.md).
+
 ## Credits
 
-- Colors: [ayu](https://github.com/dempfi/ayu) by Ike Ku. The original MIT license is kept in [`LICENSE`](LICENSE).
+- Colors: [ayu](https://github.com/dempfi/ayu) by Ike Ku (MIT). Its license is included in
+  [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 - File icons: from the [`ayu`](https://www.npmjs.com/package/ayu) package. Replacements for its PNG-only icons come from
   [gilbarbara/logos](https://github.com/gilbarbara/logos) (CC0),
   [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0),
   [vscode-icons](https://github.com/vscode-icons/vscode-icons) (MIT) and
   [Material Icon Theme](https://github.com/material-extensions/vscode-material-icon-theme) (MIT); per-icon list in
-  [`src/icons/SOURCES.md`](src/icons/SOURCES.md), licenses in [`src/icons/NOTICES.md`](src/icons/NOTICES.md). Brand
+  [`src/icons/SOURCES.md`](src/icons/SOURCES.md), licenses in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md). Brand
   logos remain trademarks of their owners.
 - Firefox background animation: [Animation Of Stars](https://vimeo.com/379631605) by Play,
   [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Details in [`firefox/CREDITS.md`](firefox/CREDITS.md).

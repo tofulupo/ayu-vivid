@@ -1,0 +1,7 @@
+id = "ayu-vivid-icons"
+name = "ayu Vivid Icons"
+version = "1.0.0"
+schema_version = 1
+authors = ["Marcel (tofulupo)"]
+description = "ayu's file icons, with sharp SVGs for the ones ayu only has as PNG. Based on ayu by Ike Ku."
+repository = "https://github.com/tofulupo/ayu-vivid"

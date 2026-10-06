@@ -1,6 +1,8 @@
 [global]
 
 line-length = 120
+# Generated copies of THIRD-PARTY-NOTICES.md; the source at the root is checked.
+exclude = ["zed/"]
 
 [MD013]
 reflow = true

@@ -4,6 +4,7 @@
 import { getIconFile, icons } from 'ayu/icons'
 import { encodeBase64 } from '@std/encoding/base64'
 import { NAME, out, SLUG } from './shared.ts'
+import { ICONS_DIR } from './zed.ts'
 
 const ayuDir = new URL('../icons/', import.meta.resolve('ayu/icons')).pathname
 const ayuFiles = [...Deno.readDirSync(ayuDir)].map((e) => e.name)
@@ -20,8 +21,8 @@ const upstream = (id: string) => {
   return { uri: dataUri(ayuDir + png), png: true }
 }
 
-const theme = JSON.parse(Deno.readTextFileSync(out(`zed/icon_themes/${SLUG}.json`))).themes[0]
-const ours = (id: string) => dataUri(out(`zed/${theme.file_icons[id].path.replace(/^\.\//, '')}`))
+const theme = JSON.parse(Deno.readTextFileSync(out(`${ICONS_DIR}/icon_themes/${SLUG}.json`))).themes[0]
+const ours = (id: string) => dataUri(out(`${ICONS_DIR}/${theme.file_icons[id].path.replace(/^\.\//, '')}`))
 
 const uses = (id: string) =>
   [
