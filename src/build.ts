@@ -5,7 +5,8 @@
 // Flags: --vivid=<factor> (syntax saturation, default 1.2), --p3 (Zed only).
 import * as cosmic from './cosmic.ts'
 import * as firefox from './firefox.ts'
+import * as kagi from './kagi.ts'
 import * as vim from './vim.ts'
 import * as zed from './zed.ts'
 
-for (const port of [zed, cosmic, vim, firefox]) console.log(port.build())
+for (const port of [zed, cosmic, vim, firefox, kagi]) console.log(port.build())

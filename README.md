@@ -14,6 +14,7 @@ zed/icons/  Zed extension "ayu Vivid Icons": file icon theme
 cosmic/     COSMIC desktop theme + COSMIC Terminal colors (ayu Vivid Dark)
 vim/        Vim / Neovim colorscheme (ayu Vivid Dark)
 firefox/    Firefox / LibreWolf theme (ayu Vivid Dark + animated stars)
+kagi/       Custom CSS for the Kagi search engine (ayu Vivid Light + Dark)
 ```
 
 Files in the port folders are generated. Don't edit them by hand; change `src/` and rebuild.
@@ -140,6 +141,19 @@ colors.
 - **Add-on package:** `deno task firefox-pack` builds `firefox/ayu-vivid-space.xpi` for addons.mozilla.org. To test it
   unsigned until the next restart: `about:debugging` → This Firefox → **Load Temporary Add-on** →
   `firefox/manifest.json`.
+
+## Kagi
+
+`kagi/ayu-vivid.css` styles the [Kagi](https://kagi.com) search engine, light and dark in one file. Paste its contents
+into Settings → Appearance → **Custom CSS** and turn on **Enable Custom CSS**. It follows Kagi's theme setting: ayu
+Vivid Light with Kagi's light themes, ayu Vivid Dark with **Dark** or **Moon Dark**.
+
+For the theme color (used for the browser toolbar on mobile), enter **`#fcfcfc`** for light and **`#10141c`** for dark,
+the ayu page backgrounds. They're also noted at the top of the CSS file.
+
+Links are ayu blue, visited links purple, and hover and active states use the ayu yellow accent. In the light version,
+text colors are darkened just enough to stay readable on white (contrast of at least 4.5:1); hue and saturation are
+kept.
 
 ## License
 

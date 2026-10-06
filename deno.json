@@ -8,7 +8,7 @@
   "tasks": {
     "build": {
       "description": "Lint Markdown, then generate all ports",
-      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox src/build.ts",
+      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox,kagi src/build.ts",
       "dependencies": ["md"]
     },
     "md": {
