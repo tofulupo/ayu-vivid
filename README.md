@@ -168,14 +168,17 @@ colors.
 **ayu Vivid Space** for Chromium browsers (Helium, Chrome, Brave, Vivaldi, Edge): the same colors as the Firefox theme,
 with stars behind the tab strip and, dimmed, behind the toolbar.
 
-Tested in Helium on macOS. Chrome, Brave, Vivaldi and Edge use the same theme format and should work too, but I can't
-test them; if you use one of them, feedback (screenshots or problems) is welcome in the
+Tested in Helium on macOS and in Chrome on Debian 13. Brave, Vivaldi and Edge use the same theme format and should work
+too, but I can't test them; if you use one of them, feedback (screenshots or problems) is welcome in the
 [issues](https://github.com/tofulupo/ayu-vivid/issues).
 
 Chromium themes only allow still images and fixed colors, so compared to Firefox:
 
 - the stars don't move;
 - the address bar's focus ring stays Chromium's blue, because themes can't change it.
+
+On Linux, the theme only shows when Settings → Appearance is set to **GTK** or **Classic**. In **Qt** mode, Chrome
+doesn't apply it.
 
 To install:
 
