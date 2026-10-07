@@ -50,8 +50,9 @@ this repository.
    ```
 
    Without arguments it uses LibreWolf's default profile (macOS, Linux, Flatpak). For Firefox or another profile, add
-   the folder from `about:support` → Profile Folder, e.g. `deno task firefox-chrome "<profile dir>"`. It never
-   overwrites a `userChrome.css` or `userContent.css` it didn't create.
+   the folder from `about:support` → **Profile Folder** (on Linux: **Profile Directory**), e.g.
+   `deno task firefox-chrome "<profile dir>"`. It never overwrites a `userChrome.css` or `userContent.css` it didn't
+   create.
 2. In `about:config`, set `toolkit.legacyUserProfileCustomizations.stylesheets` to `true`. This only lets the browser
    load CSS from your own profile folder.
 3. In `about:addons` → Themes, enable the built-in **Dark** theme. The CSS overrides its colors.
