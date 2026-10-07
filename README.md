@@ -119,7 +119,7 @@ The terminal colors are the same values the Zed theme uses.
 Copy `vim/ayu-vivid-dark.vim` to `~/.vim/colors/` (Vim) or `~/.config/nvim/colors/` (Neovim), then run
 `:colorscheme ayu-vivid-dark`. It uses truecolor and falls back to the nearest 256 colors.
 
-![Vim with ayu Vivid Dark, editing Rust](docs/screenshots/vim.webp)
+![Vim with ayu Vivid Dark in COSMIC Terminal, editing Rust](docs/screenshots/vim.webp)
 
 ## Zed
 
