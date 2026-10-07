@@ -3,6 +3,9 @@
   "name": "ayu Vivid Space",
   "version": "1.0.0",
   "description": "ayu Vivid Dark colors over stars. Based on ayu by Ike Ku. Stars: \"Animation Of Stars\" by Play, CC BY 3.0.",
+  "icons": {
+    "128": "img/icon.png"
+  },
   "theme": {
     "images": {
       "theme_frame": "img/frame.png",

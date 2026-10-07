@@ -21,6 +21,7 @@ const chromiumManifest = (s: Scheme, z: ZedTheme) => {
     name: `${NAME} Space`,
     version: VERSION,
     description: `${z.name} colors over stars. Based on ayu by Ike Ku. Stars: "Animation Of Stars" by Play, CC BY 3.0.`,
+    icons: { '128': 'img/icon.png' },
     theme: {
       images: { theme_frame: 'img/frame.png', theme_toolbar: 'img/toolbar.png' },
       colors: {
@@ -50,12 +51,13 @@ const credits = `# Credits
 
 ## Star background
 
-\`img/frame.png\` and \`img/toolbar.png\` are a still frame from [**Animation Of Stars**](https://vimeo.com/379631605) by
-[Play](https://vimeo.com/playsf), licensed under
+\`img/frame.png\`, \`img/toolbar.png\` and \`img/icon.png\` are made from a still frame of
+[**Animation Of Stars**](https://vimeo.com/379631605) by [Play](https://vimeo.com/playsf), licensed under
 [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/).
 
 Changes: scaled to 640\u00d7360, a single frame taken, and black lifted to ayu Vivid Dark's background color
-(\`${ayu.dark.ui.bg.hex()}\`). \`toolbar.png\` is additionally dimmed with the editor background color.
+(\`${ayu.dark.ui.bg.hex()}\`). \`toolbar.png\` is additionally dimmed with the editor background color; \`icon.png\` is a
+brightened circular crop with a ring added.
 
 ## Colors
 
