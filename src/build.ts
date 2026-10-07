@@ -3,10 +3,11 @@
 // a `build()` that returns a short summary, and list it here.
 //
 // Flags: --vivid=<factor> (syntax saturation, default 1.2), --p3 (Zed only).
+import * as chromium from './chromium.ts'
 import * as cosmic from './cosmic.ts'
 import * as firefox from './firefox.ts'
 import * as kagi from './kagi.ts'
 import * as vim from './vim.ts'
 import * as zed from './zed.ts'
 
-for (const port of [zed, cosmic, vim, firefox, kagi]) console.log(port.build())
+for (const port of [zed, cosmic, vim, firefox, chromium, kagi]) console.log(port.build())

@@ -7,4 +7,7 @@ node_modules
 firefox/*.xpi
 firefox/*.zip
 firefox/.export/
+chromium/*.zip
+# Written by Chromium browsers into an unpacked theme folder
+chromium/Cached Theme.pak
 .tmp/

@@ -8,7 +8,7 @@
   "tasks": {
     "build": {
       "description": "Lint Markdown, then generate all ports",
-      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox,kagi src/build.ts",
+      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox,chromium,kagi src/build.ts",
       "dependencies": ["md"]
     },
     "md": {
@@ -31,6 +31,8 @@
     "firefox-chrome": "sh firefox/install.sh",
     "firefox-chrome-uninstall": "sh firefox/install.sh --uninstall",
     "firefox-export": "cd firefox && rm -rf .export ayu-vivid-space.zip && mkdir -p .export/ayu-vivid-space/chrome .export/ayu-vivid-space/img && cp install.sh CREDITS.md .export/ayu-vivid-space/ && cp chrome/userChrome.css chrome/userContent.css .export/ayu-vivid-space/chrome/ && cp img/background.gif .export/ayu-vivid-space/img/ && cd .export && zip -qr ../ayu-vivid-space.zip ayu-vivid-space && cd .. && rm -rf .export",
+    "chromium-pack": "cd chromium && rm -f ayu-vivid-space-chromium.zip && zip -qr ayu-vivid-space-chromium.zip manifest.json img CREDITS.md",
+    "chromium-background": "deno run --allow-read --allow-write=chromium --allow-run=magick src/chromium-background.ts",
     "firefox-pack": "cd firefox && rm -f ayu-vivid-space.xpi && zip -qr ayu-vivid-space.xpi manifest.json img CREDITS.md"
   }
 }

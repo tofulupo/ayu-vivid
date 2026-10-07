@@ -1,0 +1,97 @@
+{
+  "manifest_version": 3,
+  "name": "ayu Vivid Space",
+  "version": "1.0.0",
+  "description": "ayu Vivid Dark colors over stars. Based on ayu by Ike Ku. Stars: \"Animation Of Stars\" by Play, CC BY 3.0.",
+  "theme": {
+    "images": {
+      "theme_frame": "img/frame.png",
+      "theme_toolbar": "img/toolbar.png"
+    },
+    "colors": {
+      "frame": [
+        13,
+        16,
+        23
+      ],
+      "frame_inactive": [
+        13,
+        16,
+        23
+      ],
+      "frame_incognito": [
+        13,
+        16,
+        23
+      ],
+      "frame_incognito_inactive": [
+        13,
+        16,
+        23
+      ],
+      "toolbar": [
+        16,
+        20,
+        28
+      ],
+      "toolbar_text": [
+        191,
+        189,
+        182
+      ],
+      "toolbar_button_icon": [
+        191,
+        189,
+        182
+      ],
+      "tab_text": [
+        191,
+        189,
+        182
+      ],
+      "tab_background_text": [
+        120,
+        120,
+        118
+      ],
+      "tab_background_text_inactive": [
+        84,
+        85,
+        87
+      ],
+      "bookmark_text": [
+        191,
+        189,
+        182
+      ],
+      "omnibox_background": [
+        13,
+        16,
+        23
+      ],
+      "omnibox_text": [
+        191,
+        189,
+        182
+      ],
+      "ntp_background": [
+        16,
+        20,
+        28
+      ],
+      "ntp_text": [
+        191,
+        189,
+        182
+      ],
+      "ntp_link": [
+        230,
+        180,
+        80
+      ]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    }
+  }
+}

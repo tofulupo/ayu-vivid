@@ -16,6 +16,7 @@ zed/icons/  Zed extension "ayu Vivid Icons": file icon theme
 cosmic/     COSMIC desktop theme + COSMIC Terminal colors (ayu Vivid Dark)
 vim/        Vim / Neovim colorscheme (ayu Vivid Dark)
 firefox/    Firefox / LibreWolf theme (ayu Vivid Dark + animated stars)
+chromium/   Helium / Chrome / Brave / Vivaldi theme (ayu Vivid Dark + still stars)
 kagi/       Custom CSS for the Kagi search engine (ayu Vivid Light + Dark)
 ```
 
@@ -110,6 +111,9 @@ signed `ayu-vivid-space-<version>.xpi`, the same file Mozilla serves. Drag it in
 `about:addons` → gear menu → **Install Add-on From File**. It's signed by Mozilla, so it installs with signature
 checking on.
 
+**Orion** (Kagi's browser) installs the theme but ignores it: no colors and no animation. The [Kagi](#kagi) CSS works
+there as usual.
+
 ### Alternative: userChrome.css
 
 This installs the theme as CSS in your browser profile instead of as an add-on. It's handy for testing changes from
@@ -159,6 +163,37 @@ colors.
   unsigned until the next restart: `about:debugging` → This Firefox → **Load Temporary Add-on** →
   `firefox/manifest.json`.
 
+## Helium / Chromium
+
+**ayu Vivid Space** for Chromium browsers (Helium, Chrome, Brave, Vivaldi, Edge): the same colors as the Firefox theme,
+with stars behind the tab strip and, dimmed, behind the toolbar.
+
+Tested in Helium on macOS. Chrome, Brave, Vivaldi and Edge use the same theme format and should work too, but I can't
+test them; if you use one of them, feedback (screenshots or problems) is welcome in the
+[issues](https://github.com/tofulupo/ayu-vivid/issues).
+
+Chromium themes only allow still images and fixed colors, so compared to Firefox:
+
+- the stars don't move;
+- the address bar's focus ring stays Chromium's blue, because themes can't change it.
+
+To install:
+
+1. Download `ayu-vivid-space-chromium.zip` from a [release](https://github.com/tofulupo/ayu-vivid/releases) and unzip
+   it, or use the `chromium/` folder of this repository.
+2. Open `chrome://extensions` and turn on **Developer mode**.
+3. Click **Load unpacked** and select the folder. Keep the folder; the browser loads the theme from there.
+
+To remove it, go to Settings → Appearance and click **Reset to default**.
+
+### Development
+
+- **Images:** `chromium/img/frame.png` (tab strip) and `chromium/img/toolbar.png` (toolbar) are a still frame of the
+  Firefox animation. Remake them with `deno task chromium-background` after `deno task firefox-background`. The
+  toolbar dimming is `TOOLBAR_TINT` in `src/chromium-background.ts`.
+- **Release zip:** `deno task chromium-pack` creates `chromium/ayu-vivid-space-chromium.zip` with the manifest, images
+  and `CREDITS.md`.
+
 ## Kagi
 
 `kagi/ayu-vivid.css` styles the [Kagi](https://kagi.com) search engine, light and dark in one file. It's also listed on
@@ -189,7 +224,8 @@ BSD-3-Clause, see [`LICENSE`](LICENSE). Third-party parts keep their own license
   [Material Icon Theme](https://github.com/material-extensions/vscode-material-icon-theme) (MIT); per-icon list in
   [`src/icons/SOURCES.md`](src/icons/SOURCES.md), licenses in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md). Brand
   logos remain trademarks of their owners.
-- Firefox background animation: [Animation Of Stars](https://vimeo.com/379631605) by Play,
-  [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Details in [`firefox/CREDITS.md`](firefox/CREDITS.md).
-- Inspiration for the animated Firefox theme: [Dark space](https://github.com/nicoth-in/Dark-Space-Theme) by Nicothin.
+- Firefox and Chromium star background: [Animation Of Stars](https://vimeo.com/379631605) by Play,
+  [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Details in [`firefox/CREDITS.md`](firefox/CREDITS.md) and
+  [`chromium/CREDITS.md`](chromium/CREDITS.md).
+- Inspiration for the star themes: [Dark space](https://github.com/nicoth-in/Dark-Space-Theme) by Nicothin.
   No files from it are used.
