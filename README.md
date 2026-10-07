@@ -122,6 +122,8 @@ Copy `vim/ayu-vivid-dark.vim` to `~/.vim/colors/` (Vim) or `~/.config/nvim/color
 
 ## Zed
 
+![Zed with ayu Vivid Dark and the ayu Vivid Icons](docs/screenshots/zed-dark.webp)
+
 Not in Zed's extension registry yet. The color themes and the icons are two separate extensions, as Zed's registry
 requires. Install either or both from this repository:
 
@@ -131,9 +133,42 @@ requires. Install either or both from this repository:
 
 Each variant also comes as **Frosted** (e.g. ayu Vivid Dark Frosted): a see-through, blurred window, so the wallpaper
 shines through like frosted glass. The editor stays more solid than the panels so code is easy to read; Light Frosted
-is more solid than Dark and Mirage. The blur works on macOS and on Linux desktops that support it, such as COSMIC and
-KDE. Elsewhere, e.g. on GNOME, the window is only see-through without blur, which makes text harder to read; use the
-regular themes there.
+is more solid than Dark and Mirage.
+
+![Zed with ayu Vivid Dark Frosted on macOS](docs/screenshots/zed-dark-frosted.webp)
+
+The blur works on macOS and on KDE Plasma. On Linux, Zed asks for blur through KDE's protocol, which other desktops
+don't support yet:
+
+- **COSMIC** blurs through the newer `ext-background-effect` protocol instead. Zed has open pull requests to switch to
+  it ([#59842](https://github.com/zed-industries/zed/pull/59842),
+  [#53746](https://github.com/zed-industries/zed/pull/53746)); until one is merged, COSMIC shows the Frosted themes
+  see-through but without blur, and lighter than on macOS.
+- **GNOME** and others have no blur at all.
+
+Without blur, you can make a Frosted theme more solid on that machine only, without changing the theme: add this to
+Zed's `settings.json` (shown for ayu Vivid Dark Frosted; the window becomes 80% solid, the editor 90%):
+
+```json
+{
+  "theme_overrides": {
+    "ayu Vivid Dark Frosted": {
+      "background": "#0d1017cc",
+      "editor.background": "#10141c4b",
+      "editor.gutter.background": "#10141c4b",
+      "toolbar.background": "#10141c4b",
+      "tab_bar.background": "#10141c4b",
+      "terminal.background": "#10141c4b",
+      "terminal.ansi.background": "#10141c4b",
+      "status_bar.background": "#10141ca6",
+      "elevated_surface.background": "#0f131af2"
+    }
+  }
+}
+```
+
+The last two hex digits are the opacity (`cc` = 80%, `ff` = solid). Remove the override once your desktop blurs the
+window.
 
 > **About the icons:** 85 of the 136 ayu file icons only exist as small PNGs, and Zed icon themes need SVG. 83 of them
 > are replaced with SVGs from open icon collections (gilbarbara/logos, Simple Icons, vscode-icons, Material Icon Theme),
