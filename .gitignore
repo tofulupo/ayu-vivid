@@ -7,3 +7,4 @@ node_modules
 firefox/*.xpi
 firefox/*.zip
 firefox/.export/
+.tmp/

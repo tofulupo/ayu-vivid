@@ -4,6 +4,8 @@
 > [ayu](https://github.com/dempfi/ayu), to me the most beautiful theme there is. This repository only carries his colors
 > into a few more apps.
 
+![ayu Vivid Space in Firefox, showing Kagi with the ayu Vivid CSS](docs/screenshots/hero.webp)
+
 The ayu color theme for several apps, all generated from the [`ayu`](https://www.npmjs.com/package/ayu) palette package
 so they stay in sync. Syntax colors are tuned in the Zed theme, and the other ports take their colors from it.
 
@@ -75,6 +77,10 @@ Notes:
 `cosmic/` has a desktop theme and a terminal color scheme, both from **ayu Vivid Dark**. The desktop theme is also on
 [cosmic-themes.org](https://cosmic-themes.org/376/).
 
+![COSMIC desktop with ayu Vivid Dark: Files, Settings and the tiling menu](docs/screenshots/cosmic-desktop.webp)
+
+![COSMIC Terminal with ayu Vivid Dark, showing eza output](docs/screenshots/cosmic-terminal.webp)
+
 - **Desktop:** open Settings → Desktop → Appearance, switch to Dark, click **Import** and pick
   `cosmic/ayu-vivid-dark.ron`.
 - **Terminal:** in COSMIC Terminal, open Settings → Color schemes, click **Import** and pick
@@ -87,9 +93,13 @@ The terminal colors are the same values the Zed theme uses.
 Copy `vim/ayu-vivid-dark.vim` to `~/.vim/colors/` (Vim) or `~/.config/nvim/colors/` (Neovim), then run
 `:colorscheme ayu-vivid-dark`. It uses truecolor and falls back to the nearest 256 colors.
 
+![Vim with ayu Vivid Dark, editing Rust](docs/screenshots/vim.webp)
+
 ## Firefox / LibreWolf
 
 **ayu Vivid Space**: ayu Vivid Dark colors over animated stars, for Firefox 140+ and LibreWolf.
+
+![ayu Vivid Space in LibreWolf, with Kagi in ayu Vivid Dark](docs/screenshots/firefox-kagi.webp)
 
 **Recommended:** install it from
 [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/ayu-vivid-space/). One click, and it updates
