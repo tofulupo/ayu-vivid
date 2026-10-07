@@ -72,7 +72,8 @@ Notes:
 
 ## COSMIC
 
-`cosmic/` has a desktop theme and a terminal color scheme, both from **ayu Vivid Dark**.
+`cosmic/` has a desktop theme and a terminal color scheme, both from **ayu Vivid Dark**. The desktop theme is also on
+[cosmic-themes.org](https://cosmic-themes.org/376/).
 
 - **Desktop:** open Settings → Desktop → Appearance, switch to Dark, click **Import** and pick
   `cosmic/ayu-vivid-dark.ron`.
@@ -90,13 +91,19 @@ Copy `vim/ayu-vivid-dark.vim` to `~/.vim/colors/` (Vim) or `~/.config/nvim/color
 
 **ayu Vivid Space**: ayu Vivid Dark colors over animated stars, for Firefox 140+ and LibreWolf.
 
-> **Recommended: install from addons.mozilla.org.** The theme is currently **in review** there. Once it's approved,
-> that's a one-click install with automatic updates, and the link will be added here. Until then, the commands below
-> let you use it right away.
+**Recommended:** install it from
+[addons.mozilla.org](https://addons.mozilla.org/firefox/addon/ayu-vivid-space/). One click, and it updates
+automatically.
 
-### Use it now (userChrome.css)
+For offline installs or other machines, each [release](https://github.com/tofulupo/ayu-vivid/releases) also has the
+signed `ayu-vivid-space-<version>.xpi`, the same file Mozilla serves. Drag it into a browser window, or use
+`about:addons` → gear menu → **Install Add-on From File**. It's signed by Mozilla, so it installs with signature
+checking on.
 
-This installs the theme as CSS in your browser profile; no add-on and no unsigned extensions are needed.
+### Alternative: userChrome.css
+
+This installs the theme as CSS in your browser profile instead of as an add-on. It's handy for testing changes from
+this repository.
 
 1. Install the files into your profile, either from this repository or from the `ayu-vivid-space.zip` of a
    [release](https://github.com/tofulupo/ayu-vivid/releases) (only needs `sh`):
@@ -127,7 +134,7 @@ Pass a profile folder the same way as when installing. It only removes the files
 `userChrome.css`/`userContent.css` and anything else in `chrome/` stay. Then restart the browser. Optionally set the
 `about:config` setting from step 2 back to `false` and pick another theme in `about:addons`.
 
-When the theme is available on addons.mozilla.org, uninstall the CSS version first; otherwise it overrides the add-on's
+Before switching to the add-on from addons.mozilla.org, uninstall the CSS version; otherwise it overrides the add-on's
 colors.
 
 ### Development
@@ -144,16 +151,17 @@ colors.
 
 ## Kagi
 
-`kagi/ayu-vivid.css` styles the [Kagi](https://kagi.com) search engine, light and dark in one file. Paste its contents
-into Settings → Appearance → **Custom CSS** and turn on **Enable Custom CSS**. It follows Kagi's theme setting: ayu
+`kagi/ayu-vivid.css` styles the [Kagi](https://kagi.com) search engine, light and dark in one file. It's also listed on
+[openkagi.com](https://openkagi.com/themes/ayu-vivid). Paste its contents into Settings → Appearance → **Custom CSS**
+and turn on **Enable Custom CSS**. It follows Kagi's theme setting: ayu
 Vivid Light with Kagi's light themes, ayu Vivid Dark with **Dark** or **Moon Dark**.
 
 For the theme color (used for the browser toolbar on mobile), enter **`#fcfcfc`** for light and **`#10141c`** for dark,
 the ayu page backgrounds. They're also noted at the top of the CSS file.
 
-Links are ayu blue, visited links purple, and hover and active states use the ayu yellow accent. In the light version,
-text colors are darkened just enough to stay readable on white (contrast of at least 4.5:1); hue and saturation are
-kept.
+Result titles are blue (ayu's link color in dark), visited titles purple, and hover and active states use the ayu
+yellow accent. Titles are only underlined on hover. In the light version, colors are darkened just enough to stay
+readable on white (contrast of at least 4.5:1 for text, 3:1 for the large titles); hue and saturation are kept.
 
 ## License
 
