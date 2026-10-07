@@ -16,7 +16,7 @@ so they stay in sync, with slightly punchier syntax colors.
 | [Kagi](#kagi) | ayu Vivid Light + Dark | [openkagi.com](https://openkagi.com/themes/ayu-vivid) |
 | [COSMIC](#cosmic) | ayu Vivid Dark, desktop + terminal | [cosmic-themes.org](https://cosmic-themes.org/376/) |
 | [Vim / Neovim](#vim--neovim) | ayu Vivid Dark | [release](https://github.com/tofulupo/ayu-vivid/releases) |
-| [Zed](#zed) | ayu Vivid Dark / Mirage / Light + icons | this repository (dev extension) |
+| [Zed](#zed) | ayu Vivid Dark / Mirage / Light, each also Frosted, + icons | this repository (dev extension) |
 
 ## Firefox / LibreWolf
 
@@ -129,6 +129,12 @@ requires. Install either or both from this repository:
 2. Select `zed/theme/` (color themes) or `zed/icons/` (icons). Repeat for the other one.
 3. Pick the theme with `theme selector: toggle` and the icons with `icon theme selector: toggle`.
 
+Each variant also comes as **Frosted** (e.g. ayu Vivid Dark Frosted): a see-through, blurred window, so the wallpaper
+shines through like frosted glass. The editor stays more solid than the panels so code is easy to read; Light Frosted
+is more solid than Dark and Mirage. The blur works on macOS and on Linux desktops that support it, such as COSMIC and
+KDE. Elsewhere, e.g. on GNOME, the window is only see-through without blur, which makes text harder to read; use the
+regular themes there.
+
 > **About the icons:** 85 of the 136 ayu file icons only exist as small PNGs, and Zed icon themes need SVG. 83 of them
 > are replaced with SVGs from open icon collections (gilbarbara/logos, Simple Icons, vscode-icons, Material Icon Theme),
 > so some logos look different from ayu in VS Code. Only `tern` (Tern.js) is still a PNG inside an SVG and looks a bit
@@ -218,6 +224,9 @@ Options, passed after the task name:
 ### Zed
 
 - **Testing changes:** after rebuilding, run `zed: rebuild dev extension` (or reinstall it).
+- **Frosted themes:** made from the regular ones by `frosted()` in `src/zed.ts`. The visible opacity of panels, editor
+  and popups per variant is in `FROSTED`; since Zed draws panels and the editor on top of the window background, the
+  code works out each layer's own alpha so the stack reaches those values.
 - **Syntax mapping:** Zed uses tree-sitter captures instead of TextMate scopes, so the mapping in `src/zed.ts`
   approximates the original ayu Sublime color scheme rather than copying it rule for rule.
 - **Icons:** to use a different icon, save an SVG as `src/icons/<name>.svg`, using the same name as the file it replaces
@@ -254,3 +263,5 @@ BSD-3-Clause, see [`LICENSE`](LICENSE). Third-party parts keep their own license
   [`chromium/CREDITS.md`](chromium/CREDITS.md).
 - Inspiration for the star themes: [Dark space](https://github.com/nicoth-in/Dark-Space-Theme) by Nicothin.
   No files from it are used.
+- Inspiration for the Zed Frosted themes: [Ayu Glass](https://github.com/jansol/zed-ayu-glass) by jansol. No files
+  from it are used.

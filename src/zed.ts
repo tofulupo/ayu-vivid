@@ -5,6 +5,7 @@ import { getIconFile, icons } from 'ayu/icons'
 import { encodeBase64 } from '@std/encoding/base64'
 import {
   AUTHOR,
+  channels,
   cleanDir,
   type Color,
   hex,
@@ -13,6 +14,7 @@ import {
   REPOSITORY,
   type Scheme,
   SLUG,
+  toHex,
   type Variant,
   VERSION,
   vivid,
@@ -371,6 +373,86 @@ const convertColors = (value: unknown): unknown => {
 
 export type ZedTheme = ReturnType<typeof theme>
 
+// ---------- Frosted variants ----------
+
+// Visible opacity in the Frosted themes (blurred, translucent window).
+//   panel:  window background alone: project panel, sidebar, title/status bar
+//   center: the editor in the center, where Zed paints `editor.background`
+//           twice (container and editor), so it ends up darker than one layer
+//   status: the status bar at the bottom, about as dark as the agent panel
+//   popup:  menus and pickers
+//   muted:  how far ayu's muted UI gray (file names, icons, ignored files)
+//           moves towards the normal text color, for contrast on glass
+// Light is more solid: dark text on bright glass loses contrast faster.
+const FROSTED: Record<Variant, { panel: number; center: number; status: number; popup: number; muted: number }> = {
+  dark: { panel: 0.7, center: 0.8, status: 0.88, popup: 0.92, muted: 0.6 },
+  mirage: { panel: 0.7, center: 0.8, status: 0.88, popup: 0.92, muted: 0.6 },
+  light: { panel: 0.8, center: 0.925, status: 0.95, popup: 0.95, muted: 0.45 }
+}
+
+const mix = (a: string, b: string, t: number) => {
+  const [x, y] = [channels(a), channels(b)]
+  return toHex([0, 1, 2].map((i) => x[i] + (y[i] - x[i]) * t))
+}
+
+const withAlpha = (hexColor: string, a: number) =>
+  hexColor.slice(0, 7) + Math.round(a * 255).toString(16).padStart(2, '0')
+
+// Zed paints `background` over the whole window and draws panels, tabs and the
+// editor on top, so alphas multiply.
+const frosted = (t: ZedTheme, variant: Variant): ZedTheme => {
+  const o = FROSTED[variant]
+  // The window background alone gives the panel look. Panel-level surfaces get
+  // no fill: the project panel paints `panel.background` behind every row on
+  // top of the dock's own, so any alpha there makes the rows darker than the
+  // empty space below them.
+  const root = o.panel
+  // Own alpha of `editor.background`, so that two layers of it on the window
+  // background reach `center`. Where it's painted once (gutter, tab bar,
+  // terminal, agent panel), it ends up between `panel` and `center`.
+  const editor = 1 - Math.sqrt((1 - o.center) / (1 - root))
+  const st = { ...t.style } as Record<string, unknown>
+  const set = (keys: string[], a: number) => {
+    for (const k of keys) st[k] = withAlpha(st[k] as string, a)
+  }
+  const translucent = (k: string) => (st[k] as string).length > 7
+
+  st['background.appearance'] = 'blurred'
+  set(['background'], root)
+  set([
+    'surface.background',
+    'panel.background',
+    'title_bar.background',
+    'title_bar.inactive_background'
+  ], 0)
+  // The status bar: one layer on the window background, reaching `status`.
+  st['status_bar.background'] = st['editor.background']
+  set(['status_bar.background'], 1 - (1 - o.status) / (1 - root))
+  // The tab bar, toolbar and gutter look like the editor, so the editor area
+  // reads as one pane of glass. Zed paints the gutter next to the text area,
+  // not on top of it, so it needs the editor's own alpha. Tabs are drawn on the
+  // tab bar and get no fill; the active one stands out by its brighter text.
+  st['tab_bar.background'] = st['editor.background']
+  set(['editor.background', 'editor.gutter.background', 'toolbar.background', 'tab_bar.background'], editor)
+  set(['tab.inactive_background', 'tab.active_background'], 0)
+  // Docks have no fill of their own, so the terminal matches the editor both in
+  // the bottom panel and as a tab.
+  set(['terminal.background', 'terminal.ansi.background'], editor)
+  set(['elevated_surface.background', 'panel.overlay_background'], o.popup)
+  set(['editor.subheader.background'], 0.5)
+  for (const k of ['editor.active_line.background', 'editor.highlighted_line.background']) {
+    if (!translucent(k)) set([k], 0.5)
+  }
+
+  // Muted text and icons: same roles as in the regular theme, more contrast.
+  // Fainter roles keep their relative step (alpha) below the muted color.
+  const muted = mix(st['text.muted'] as string, st['text'] as string, o.muted)
+  st['text.muted'] = st['icon'] = muted
+  for (const k of ['icon.muted', 'icon.placeholder', 'text.placeholder']) st[k] = withAlpha(muted, 0.75)
+  for (const k of ['version_control.ignored', 'hidden', 'ignored']) st[k] = withAlpha(muted, 0.85)
+  return { ...t, name: `${t.name} Frosted`, style: st as ZedTheme['style'] }
+}
+
 const THEME_DIR = 'zed/theme'
 export const ICONS_DIR = 'zed/icons'
 
@@ -401,7 +483,8 @@ export const build = () => {
     THEME_DIR,
     `${SLUG}-theme`,
     NAME,
-    'ayu Dark, Mirage and Light with punchier syntax colors. Based on ayu by Ike Ku.'
+    'ayu Dark, Mirage and Light with punchier syntax colors, each also as a Frosted (blurred glass) version. ' +
+      'Based on ayu by Ike Ku.'
   )
   writeExtension(
     ICONS_DIR,
@@ -415,7 +498,10 @@ export const build = () => {
     $schema: 'https://zed.dev/schema/themes/v0.2.0.json',
     name: NAME,
     author: AUTHOR,
-    themes: variants.map((v) => colorSpace(theme(ayu[v], v)))
+    themes: variants.flatMap((v) => {
+      const t = theme(ayu[v], v)
+      return [t, frosted(t, v)].map(colorSpace)
+    })
   })
 
   const written = new Map<string, string>()
@@ -428,6 +514,6 @@ export const build = () => {
 
   const unknown = [...overrides].filter((id) => !usedOverrides.has(id))
   if (unknown.length) console.warn(`src/icons: not a PNG-only ayu icon, ignored: ${unknown.join(', ')}`)
-  return `zed: ${variants.length} themes (${colorSpace === convertColors ? 'P3-corrected' : 'vivid'}), ` +
+  return `zed: ${variants.length * 2} themes (${colorSpace === convertColors ? 'P3-corrected' : 'vivid'}), ` +
     `${written.size} icons (${usedOverrides.size} from src/icons)`
 }

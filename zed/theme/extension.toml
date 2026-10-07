@@ -3,5 +3,5 @@ name = "ayu Vivid"
 version = "1.0.0"
 schema_version = 1
 authors = ["Marcel (tofulupo)"]
-description = "ayu Dark, Mirage and Light with punchier syntax colors. Based on ayu by Ike Ku."
+description = "ayu Dark, Mirage and Light with punchier syntax colors, each also as a Frosted (blurred glass) version. Based on ayu by Ike Ku."
 repository = "https://github.com/tofulupo/ayu-vivid"
