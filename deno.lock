@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/encoding@1": "1.0.11",
+    "jsr:@std/encoding@^1.0.11": "1.0.11",
     "npm:ayu@^9.1.0": "9.1.0"
   },
   "jsr": {
@@ -22,7 +22,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/encoding@1",
+      "jsr:@std/encoding@^1.0.11",
       "npm:ayu@^9.1.0"
     ]
   }

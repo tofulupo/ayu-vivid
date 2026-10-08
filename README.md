@@ -12,9 +12,10 @@ so they stay in sync, with slightly punchier syntax colors.
 | App | Theme | Get it |
 | --- | --- | --- |
 | [Firefox / LibreWolf](#firefox--librewolf) | ayu Vivid Space (animated stars) | [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/ayu-vivid-space/) |
-| [Helium / Chromium](#helium--chromium) | ayu Vivid Space (still stars) | [release](https://github.com/tofulupo/ayu-vivid/releases) zip |
+| [Helium / Chromium](#helium--chromium) | ayu Vivid Space (still stars) | [Chrome Web Store](https://chromewebstore.google.com/detail/aoioalpfpelgihdmabkkgiladebahaef) |
 | [Kagi](#kagi) | ayu Vivid Light + Dark | [openkagi.com](https://openkagi.com/themes/ayu-vivid) |
 | [COSMIC](#cosmic) | ayu Vivid Dark, desktop + terminal | [cosmic-themes.org](https://cosmic-themes.org/376/) |
+| [iTerm2 / Ghostty](#iterm2--ghostty) | ayu Vivid Dark + Light | [`terminal/`](terminal/) in this repository |
 | [Vim / Neovim](#vim--neovim) | ayu Vivid Dark | [release](https://github.com/tofulupo/ayu-vivid/releases) |
 | [Zed](#zed) | ayu Vivid Dark / Mirage / Light, each also Frosted, + icons | this repository (dev extension) |
 
@@ -77,7 +78,11 @@ Chromium themes only allow still images and fixed colors, so compared to Firefox
 On Linux, the theme only shows when Settings → Appearance is set to **GTK** or **Classic**. In **Qt** mode, Chrome
 doesn't apply it.
 
-To install:
+**Recommended:** install it from the
+[Chrome Web Store](https://chromewebstore.google.com/detail/aoioalpfpelgihdmabkkgiladebahaef). One click, and it
+updates automatically.
+
+Without the store, e.g. for testing changes from this repository:
 
 1. Download `ayu-vivid-space-chromium.zip` from a [release](https://github.com/tofulupo/ayu-vivid/releases) and unzip
    it, or use the `chromium/` folder of this repository.
@@ -113,6 +118,23 @@ readable on white (contrast of at least 4.5:1 for text, 3:1 for the large titles
   `cosmic/ayu-vivid-dark-terminal.ron`, then select **ayu Vivid Dark**.
 
 The terminal colors are the same values the Zed theme uses.
+
+## iTerm2 / Ghostty
+
+`terminal/` has color schemes for ayu Vivid Dark and Light, based on the terminal colors of COSMIC Terminal and Zed's
+terminal. Dark has two refinements that will follow there with the next version: normal white is ayu's text color
+instead of pure white, and the two greens are lighter and easier to tell apart.
+
+- **iTerm2:** Settings → Profiles → Colors → **Color Presets…** → **Import…** and pick both files from
+  `terminal/iterm2/`, then choose **ayu Vivid Dark** from the same menu. To follow the system appearance, tick **Use
+  separate colors for light and dark mode** there and pick a preset for each.
+- **Ghostty:** copy both files from `terminal/ghostty/` to `~/.config/ghostty/themes/` and add to Ghostty's config:
+
+  ```text
+  theme = light:ayu Vivid Light,dark:ayu Vivid Dark
+  ```
+
+  Or `theme = ayu Vivid Dark` to always use Dark.
 
 ## Vim / Neovim
 
@@ -195,6 +217,9 @@ window.
 - **Helium / Chromium:** Settings → Appearance → **Reset to default**.
 - **Kagi:** clear the field in Settings → Appearance → **Custom CSS**, or turn off **Enable Custom CSS**. If a broken
   stylesheet makes the page unusable, add `&no_css` to a search URL to load Kagi without it.
+- **iTerm2:** choose another preset in Settings → Profiles → Colors → **Color Presets…**; **Delete Preset…** in the
+  same menu removes it.
+- **Ghostty:** remove the `theme` line from the config and the files from `~/.config/ghostty/themes/`.
 - **Vim / Neovim:** delete `ayu-vivid-dark.vim` from your `colors/` folder.
 - **Zed:** open the extensions page (`zed: extensions`) and uninstall the dev extension.
 
@@ -205,6 +230,7 @@ src/        generators, one module per port (shared.ts has the color helpers)
 zed/theme/  Zed extension "ayu Vivid": Dark / Mirage / Light color themes
 zed/icons/  Zed extension "ayu Vivid Icons": file icon theme
 cosmic/     COSMIC desktop theme + COSMIC Terminal colors (ayu Vivid Dark)
+terminal/   iTerm2 + Ghostty color schemes (ayu Vivid Dark + Light)
 vim/        Vim / Neovim colorscheme (ayu Vivid Dark)
 firefox/    Firefox / LibreWolf theme (ayu Vivid Dark + animated stars)
 chromium/   Helium / Chrome / Brave / Vivaldi theme (ayu Vivid Dark + still stars)

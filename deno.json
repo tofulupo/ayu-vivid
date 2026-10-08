@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@std/encoding": "jsr:@std/encoding@^1",
+    "@std/encoding": "jsr:@std/encoding@^1.0.11",
     "ayu": "npm:ayu@^9.1.0",
     "ayu/color": "npm:ayu@^9.1.0/color",
     "ayu/icons": "npm:ayu@^9.1.0/icons"
@@ -8,7 +8,7 @@
   "tasks": {
     "build": {
       "description": "Lint Markdown, then generate all ports",
-      "command": "deno run --allow-read --allow-write=zed,cosmic,vim,firefox,chromium,kagi src/build.ts",
+      "command": "deno run --allow-read --allow-write=zed,cosmic,terminal,vim,firefox,chromium,kagi src/build.ts",
       "dependencies": ["md"]
     },
     "md": {
